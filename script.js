@@ -38,24 +38,28 @@ for (let i = 0; i < barras.length; i++) {
 
 // 4 - Formulário
 
-let formulario = document.getElementById("form-contato");
+// 1. Pegar o formulário
+const formulario = document.getElementById('form-contato');
 
-formulario.addEventListener("submit", function(evento) {
-
+// 2. Adicionar o ouvinte do evento 'submit'
+formulario.addEventListener('submit', function(evento) {
+    // 3. Impedir o recarregamento da página
     evento.preventDefault();
-
-    let nome = document.getElementById("nome");
-    let email = document.getElementById("email");
-    let mensagem = document.getElementById("mensagem");
-
-    if (nome.value == "" || email.value == "" || mensagem.value == "") {
-        alert("Preencha todos os campos!");
-    } else {
-        document.getElementById("resposta-form").textContent =
-        "Obrigado, " + nome.value + "! Sua mensagem foi enviada.";
-
-        nome.value = "";
-        email.value = "";
-        mensagem.value = "";
+    
+    // 4. Pegar o campo e seu valor
+    let campoNome = document.getElementById('nome');
+    let nome = campoNome.value.trim();
+    
+    // 5. Validar se está vazio
+    if (nome === '') {
+        alert('Preencha todos os campos!');
+        return;
     }
+    
+    // 6. Mostrar mensagem de sucesso no elemento #resposta-form
+    let respostaForm = document.getElementById('resposta-form');
+    respostaForm.textContent = `Obrigado, ${nome}! Sua mensagem foi enviada.`;
+    
+    // 7. Limpar o campo após o envio
+    campoNome.value = '';
 });
